@@ -1,3 +1,7 @@
+"""""""""""""""""""""""""""""
+" => VimPlug Stuff
+"""""""""""""""""""""""""""""
+
 call plug#begin()
 
 Plug 'scrooloose/nerdtree'
