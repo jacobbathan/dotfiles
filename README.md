@@ -5,3 +5,4 @@ TO ADD
 
 - ohmyzsh
 - add tmux/vim and stuff? theres a lot new stuff
+- maybe neovim
