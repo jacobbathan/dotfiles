@@ -77,6 +77,14 @@ let gruvbox_italic=1
 set background=dark
 set encoding=utf8
 
+if exists('$TMUX')
+" Colors in tmux
+    let &t_8f = "<Esc>[38;2;%lu;%lu;%lum"
+    let &t_8b = "<Esc>[48;2;%lu;%lu;%lum"
+endif
+
+
+
 """""""""""""""""""""""""""""""""""
 " => Files, Backups, Undo
 """""""""""""""""""""""""""""""""""
