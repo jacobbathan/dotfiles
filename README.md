@@ -1,8 +1,3 @@
-so I dont forget all these cool things i guess
+Dot files for shell, vim, and tmux.
 
-
-TO ADD
-
-- ohmyzsh
-- New nvim to add, things are changed differently
-- Need to fix tmux not displaying 256 colors
+Learning zsh and putting something up for the new mbp line.
