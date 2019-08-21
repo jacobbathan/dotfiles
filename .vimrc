@@ -123,6 +123,7 @@ let g:SimpylFold_docstring_preview=1
 let g:ycm_autoclose_preview_window_after_completion=1
 " Shortcut for definitions
 map <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR> 
+let g:prettier#config#single_quote = 'true'
 
 """"""""""""""""""""
 " => Python
