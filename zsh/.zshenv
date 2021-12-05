@@ -22,4 +22,8 @@ export HISTZISE=10000
 # max events for history file
 export SAVEHIST=10000
 
+# fzf now uses ripgrep get in there lads
+export FZF_DEFAULT_COMMAND="rg --files --hidden --glob '!.git'"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
 export DOTFILES="$HOME/dotfiles"

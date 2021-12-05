@@ -22,3 +22,40 @@ setopt PUSHD_IGNORE_DUPS
 
 # do no print directory stack after pushd/popd
 setopt PUSHD_SILENT
+
+# Vi mode
+bindkey -v
+export KEYTIMEOUT=1
+
+zmodload zsh/complist
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+
+# cursor mode
+autoload -Uz cursor_mode && cursor_mode
+
+# edit commands in nvim
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey -M vicmd v edit-command-line
+
+# fuzzy finder
+if [ $(command -v "fzf") ]; then
+    source /usr/share/fzf/completion.zsh
+    source /usr/share/fzf/key-bindings.zsh
+fi
+
+# auto start i3
+if [ "$(tty)" = "/dev/tty1" ];
+then
+    pgrep i3 || exec startx "$XDG_CONFIG_HOME/X11/.xinitrc"
+fi
+
+source $DOTFILES/zsh/external/bd.zsh
+
+source $DOTFILES/zsh/scripts.sh
+
+# syntax highlighting, needs to be at bottom
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
