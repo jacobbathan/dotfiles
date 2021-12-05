@@ -38,7 +38,6 @@
 *.color14: nord7
 *.color15: nord6
 
-URxvt*font: xft:DejaVuSansMono:size=11:antialias=true
 URxvt*borderLess: false
 URxvt*externalBorder: 0
 URxvt*internalBorder: 4
@@ -58,3 +57,5 @@ URxvt*tabbedex.tab-fg: 110
 URxvt*tabbedex.tab-bg: 236
 URxvt*tabbedex.transparent: true
 URxvt*tabbedex.new-button: false
+
+URxvt*font: xft:Inconsolata Nerd Font Mono:style=Medium:size=14:pixelsize=16:antialias=true
