@@ -232,10 +232,13 @@ set_from_resource $cyan2 color14 #afd7ff
 set_from_resource $white1 color7 #4E4E4E
 set_from_resource $white2 color15 #ffffff
 
-# Terminal scratchpad
+# Terminal scratchpad with tmux and three windows: 1. Terminal | 2.Neovim temp file
 for_window [instance="urxvt_scratchpad"] move to scratchpad, border none
 bindsym $mod+Shift+t [instance="urxvt_scratchpad"] scratchpad show
-exec urxvtc -name urxvt_scratchpad
+exec urxvtc -name urxvt_scratchpad \
+-e tmux -2 new-session -d -s scratchpad \; \
+new-window -n nvim 'nvim +e /tmp/nvim-tmp.md' \; \
+attach-session -d -t scratchpad
 
 # htop scratchpad
 for_window [instance="htop_scratchpad"] move to scratchpad, border none

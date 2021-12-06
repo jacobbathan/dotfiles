@@ -57,10 +57,13 @@ source $DOTFILES/zsh/external/bd.zsh
 
 source $DOTFILES/zsh/scripts.sh
 
+ftmuxp
+
 # Clearing the shell is now done with CTRL+g
 bindkey -r '^l'
 bindkey -r '^g'
 bindkey -s '^g' 'clear\n'
 
+# scripts
 # syntax highlighting, needs to be at bottom
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
