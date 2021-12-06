@@ -49,3 +49,7 @@ ln -sf "$DOTFILES/tmux/tmux.conf" "$XDG_CONFIG_HOME/tmux/tmux.conf"
 # tmuxp
 mkdir -p "$XDG_CONFIG_HOME/tmuxp"
 ln -sf "$DOTFILES/tmuxp" "$XDG_CONFIG_HOME/tmuxp"
+
+# newsboat
+rm -rf "$XDG_CONFIG_HOME/newsboat"
+ln -sf "$DOTFILES/newsboat" "$XDG_CONFIG_HOME"

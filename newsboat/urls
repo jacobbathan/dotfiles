@@ -1,0 +1,26 @@
+# Chess News
+https://www.chess.com/rss/news "chess"
+https://lichess.org/blog.atom "chess"
+https://en.chessbase.com/feed "chess"
+https://thechessworld.com/feed/ "chess"
+https://www.chessable.com/blog/feed "chess"
+
+# Chess Articles
+https://www.chess.com/rss/articles "chess"
+
+# Tech (Linux)
+https://archlinux.org/feeds/news/
+http://www.gentoo.org/rdf/en/gentoo-news.rdf
+https://artixlinux.org/feed.php
+https://www.parabola.nu/feeds/news/
+https://neovim.io/news.xml
+
+# Programming
+https://blog.python.org/feeds/posts/default
+https://reactjs.org/feed.xml
+http://reactnative.dev/blog/rss.xml
+https://devblogs.microsoft.com/typescript/feed/
+https://blog.golang.org/feed.atom?format=xml
+https://www.ruby-lang.org/en/feeds/news.rss
+https://nodejs.org/en/feed/blog.xml
+
