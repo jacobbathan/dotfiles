@@ -74,11 +74,11 @@ keys = [
 
     # Toggle between different layouts as defined below
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
-    Key([mod], "w", lazy.window.kill(), desc="Kill focused window"),
+    Key([mod, "shift"], "q", lazy.window.kill(), desc="Kill focused window"),
 
-    Key([mod, "control"], "r", lazy.restart(), desc="Restart Qtile"),
+    Key([mod, "shift"], "r", lazy.restart(), desc="Restart Qtile"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
-    Key([mod], "r", lazy.spawncmd(),
+    Key([mod], "d", lazy.spawn("dmenu_run"),
         desc="Spawn a command using a prompt widget"),
 ]
 
@@ -122,28 +122,46 @@ widget_defaults = dict(
 )
 extension_defaults = widget_defaults.copy()
 
+colors = [
+    "#2e3440", "#3b4252", "#434c5e", "#4c566a",
+    "#8fbcbb", "#88c0d0", "#81a1c1", "#5e81ac",
+    "#bf616a", "#d08770", "#ebcb8b", "#a3be8c", "#b48ead"
+]
+
+def sep():
+    return widget.Sep(linewidth=0, padding=4, background=colors[6])
+
+def space():
+    return widget.TextBox("  ")
+
+
 screens = [
     Screen(
-        bottom=bar.Bar(
+        top=bar.Bar(
             [
-                widget.CurrentLayout(),
-                widget.GroupBox(),
-                widget.Prompt(),
-                widget.WindowName(),
-                widget.Chord(
-                    chords_colors={
-                        'launch': ("#ff0000", "#ffffff"),
-                    },
-                    name_transform=lambda name: name.upper(),
-                ),
-                widget.TextBox("default config", name="default"),
-                widget.TextBox("Press &lt;M-r&gt; to spawn", foreground="#d75f5f"),
-                widget.Systray(),
-                widget.Clock(format='%Y-%m-%d %a %I:%M %p'),
-                widget.QuickExit(),
+                widget.TextBox(" ", foreground=colors[5], fontsize=16),
+                widget.CurrentLayout(foreground=colors[5]),
+                space(),
+                sep(),
+                widget.GroupBox(background=colors[2], highlight_method="text", active=colors[11], disable_drag = True, rounded=False, this_current_screen_border=colors[9], inactive=colors[5], font="Inconsolata NF", fontsize=14, urgent_alert_method="text", urgent_text=colors[8]),
+                sep(),
+                space(),
+                widget.WindowName(foreground=colors[5]),
+                sep(),
+                widget.DF(visible_on_warn=False, padding=12, background=colors[11], foreground=colors[0], fontsize=8),
+                sep(),
+                widget.Memory(padding=12, background=colors[10], fontsize=8, foreground=colors[0]),
+                sep(),
+                widget.CPU(background=colors[9], fontsize=8, padding=12, foreground=colors[0]),
+                sep(),
+                widget.Clock(format='%m-%d-%Y %I:%M', background=colors[8], padding=12, fontsize=8, foreground=colors[0]),
+                sep(),
+                widget.TextBox(" ", fontsize=16, background=colors[12]),
+                widget.PulseVolume(background=colors[12], fontsize=12, padding=10) 
             ],
-            24,
-        ),
+            20,
+            background=colors[0],
+            opacity=0.95        ),
     ),
 ]
 
