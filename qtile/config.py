@@ -76,9 +76,9 @@ keys = [
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
     Key([mod, "shift"], "q", lazy.window.kill(), desc="Kill focused window"),
 
-    Key([mod, "shift"], "r", lazy.restart(), desc="Restart Qtile"),
-    Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
-    Key([mod], "d", lazy.spawn("dmenu_run"),
+    Key([mod, "shift"], "c", lazy.restart(), desc="Restart Qtile"),
+    Key([mod, "control"], "e", lazy.shutdown(), desc="Shutdown Qtile"),
+    Key([mod], "d", lazy.spawn("rofi -show run -theme ~/.config/rofi/config.rasi"),
         desc="Spawn a command using a prompt widget"),
 ]
 
