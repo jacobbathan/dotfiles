@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # nvim
-mkdir -p "$XDG_CONFIG_HOME/nvim"
+rm -rf "$XDG_CONFIG_HOME/nvim"
+ln -sf "$DOTFILES/nvim" "$XDG_CONFIG_HOME"
 mkdir -p "$XDG_CONFIG_HOME/nvim/undo"
-ln -sf "$DOTFILES/nvim/init.vim" "$XDG_CONFIG_HOME/nvim"
 
 # install vimplug if it doesnt exist
 [ ! -f "$DOTFILES/nvim/autoload/plug.vim" ] \
