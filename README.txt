@@ -1,5 +1,7 @@
 Config for programs that I'm using.
 
+CURRENTLY SEEMS TO ONLY BE WORKING FOR ARCH BASED SYSTEMS.
+
 Window Managers:
     - awesome
     - i3gaps
