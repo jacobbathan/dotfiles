@@ -1,3 +1,4 @@
 .pyc
+qtile/__pycache__
 nvim/plugged
 nvim/undo
