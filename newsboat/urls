@@ -24,8 +24,5 @@ https://blog.golang.org/feed.atom?format=xml
 https://www.ruby-lang.org/en/feeds/news.rss
 https://nodejs.org/en/feed/blog.xml
 
-# Crypto
-https://news.bitcoin.com/feed/
-https://blog.ethereum.org/feed.xml
-https://litecoin.com/rss.xml
-https://www.getmonero.org/feed.xml
+# Misc
+https://www.quastor.org/feed
