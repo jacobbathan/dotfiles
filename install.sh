@@ -5,34 +5,15 @@ rm -rf "$XDG_CONFIG_HOME/nvim"
 ln -sf "$DOTFILES/nvim" "$XDG_CONFIG_HOME"
 mkdir -p "$XDG_CONFIG_HOME/nvim/undo"
 
-# install vimplug if it doesnt exist
-[ ! -f "$DOTFILES/nvim/autoload/plug.vim" ] \
-    && curl -fLo "$DOTFILES/nvim/autoload/plug.vim" --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
-mkdir -p "$XDG_CONFIG_HOME/nvim/autoload"
-ln -sf "$DOTFILES/nvim/autoload/plug.vim" "$XDG_CONFIG_HOME/nvim/autoload/plug.vim"
-
+# Figure out this stuff? maybe migrate to ansible instead.
 # Install (or update) all the plugins
-nvim --noplugin +PlugUpdate +qa
-
-# X11
-rm -rf "$XDG_CONFIG_HOME/X11"
-ln -s "$DOTFILES/X11" "$XDG_CONFIG_HOME"
+#nvim --noplugin +PackerUpdate +qa
 
 ## Window managers
 
 # i3
 rm -rf "$XDG_CONFIG_HOME/i3"
 ln -s "$DOTFILES/i3" "$XDG_CONFIG_HOME"
-
-# qtile
-rm -rf "$XDG_CONFIG_HOME/qtile"
-ln -s "$DOTFILES/qtile" "$XDG_CONFIG_HOME"
-
-# awesome
-rm -rf "$XDG_CONFIG_HOME/awesome"
-ln -s "$DOTFILES/awesome" "$XDG_CONFIG_HOME"
 
 # zsh
 mkdir -p "$XDG_CONFIG_HOME/zsh"
@@ -68,6 +49,3 @@ ln -sf "$DOTFILES/tmux/tmux.conf" "$XDG_CONFIG_HOME/tmux/tmux.conf"
 mkdir -p "$XDG_CONFIG_HOME/tmuxp"
 ln -sf "$DOTFILES/tmuxp" "$XDG_CONFIG_HOME/tmuxp"
 
-# newsboat
-rm -rf "$XDG_CONFIG_HOME/newsboat"
-ln -sf "$DOTFILES/newsboat" "$XDG_CONFIG_HOME"
