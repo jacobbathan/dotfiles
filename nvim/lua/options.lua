@@ -32,9 +32,10 @@ vim.opt.shortmess:append "c"
 
 --]=====]
 vim.opt.relativenumber = true
+vim.opt.number = true
 vim.opt.clipboard = "unnamedplus"
 vim.opt.undofile = true
-vim.opt.undodir = '~/.config/nvim/undo'
+vim.opt.undodir = vim.fn.expand("~/.config/nvim/undo")
 vim.opt.undolevels = 10000
 vim.opt.undoreload = 10000
 
@@ -45,5 +46,6 @@ vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.hidden = true
 
-
-
+vim.o.background = "dark"
+vim.cmd[[colorscheme dracula]]
+--vim.cmd[[highlight Normal ctermbg=NONE guibg=NONE]]

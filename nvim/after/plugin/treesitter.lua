@@ -9,5 +9,10 @@ require 'nvim-treesitter.configs'.setup {
   },
   ensure_installed = {
     "go",
+    "rust",
+    "python",
+    "javascript",
+    "typescript",
+    "tsx"
   }
 }

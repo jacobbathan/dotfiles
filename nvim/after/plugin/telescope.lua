@@ -8,7 +8,12 @@ vim.keymap.set('n', '<Leader>;;', ':Telescope help_tags<CR>')
 
 require('telescope').setup {
     defaults = {
-        prompt_prefix = "$ "
+        prompt_prefix = ">> ",
+        file_ignore_patterns = {
+            "^./.git/",
+            "^node_modules/.*",
+            "^undo/"
+        }
     }
 }
 

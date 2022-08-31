@@ -1,6 +1,5 @@
-vim.cmd [[packadd packer.nvim]]
-
 return require('packer').startup(function(use)
+    use 'wbthomason/packer.nvim'
     use {
         'nvim-telescope/telescope.nvim', tag = '0.1.0',
         requires = { {'nvim-lua/plenary.nvim'} }
@@ -19,7 +18,12 @@ return require('packer').startup(function(use)
     use 'hrsh7th/cmp-path'
     use 'hrsh7th/nvim-cmp'
     use 'saadparwaiz1/cmp_luasnip'
+    use 'windwp/nvim-autopairs'
     use 'tpope/vim-dadbod'
     use 'kristijanhusak/vim-dadbod-ui'
+    use 'ellisonleao/gruvbox.nvim'
+    use 'Mofiqul/dracula.nvim'
+    use 'nvim-lualine/lualine.nvim'
+    use 'christoomey/vim-tmux-navigator'
 end)
 
