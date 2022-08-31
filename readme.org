@@ -1,0 +1,13 @@
+* Dot files that def should not be copied
+Currently in the process of making everything fancy since im currently addicted to org mode.
+
+** Current Programs Used
+| *Program* | *Use*                                            |
+| Neovim  | Editor for everything                          |
+| Emacs   | Org-mode machine                               |
+| i3-gaps | Tiling window manager                          |
+| Kitty   | Terminal emulator                              |
+| Polybar | Status bar                                     |
+| Rofi    | Fancy dmenu replacement? Still looking into it |
+| Tmux    | Terminal multiplexer                           |
+| Zsh     | Zshell, not fish                               |
