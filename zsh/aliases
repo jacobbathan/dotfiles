@@ -1,4 +1,8 @@
-alias ll='ls -lah'
+alias ll='exa -lah'
+alias ls='exa'
+
+alias cat='bat'
+
 alias ga='git add'
 alias gc='git commit'
 alias gp='git push'
@@ -6,3 +10,4 @@ alias gp='git push'
 alias d='dirs -v'
 for index ({1..9}) alias "$index"="cd +${index}"; unset index
 
+alias emacs='emacsclient -nw'
