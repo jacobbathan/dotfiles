@@ -11,5 +11,8 @@ end
 map("n", "<space>", "<nop>")
 vim.g.mapleader = ' '
 
-map("n", "<Leader>bn", ":bn<cr>")
-map("n", "<Leader>tn", "gt")
+map("n", "<leader>bn", ":bn<cr>")
+map("n", "<leader>tn", "gt")
+
+-- Stolen from the primeagen, search and replace on word
+map("n", "<leader>s", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>")
