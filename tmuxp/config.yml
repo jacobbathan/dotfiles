@@ -1,0 +1,14 @@
+session_name: config
+start_directory: ~/.config
+
+windows:
+  - windows_name: nvim dotfiles
+    layout: tiled
+    panes:
+      - nvim
+  - window_name: terms
+    layout: tiled
+    panes:
+      -
+      - ls -lah
+      -
