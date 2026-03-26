@@ -186,11 +186,10 @@
    (tsx-ts-mode . lsp-deferred)
    (js-ts-mode . lsp-deferred))
   :config
-    (require 'dap-node))
-
-(reformatter-define prettier-format
-  :program "prettier"
-  :args `("--stdin-filepath" ,buffer-file-name))
+    (require 'dap-node)
+  (reformatter-define prettier-format
+    :program "prettier"
+    :args `("--stdin-filepath" ,buffer-file-name)))
 
 ;; --- C# ---
 (use-package csharp-ts-mode

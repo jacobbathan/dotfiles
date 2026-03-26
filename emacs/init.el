@@ -2,6 +2,7 @@
 
 ;;; Package management
 
+(package-initialize)
 (require 'use-package-ensure)
 (setq use-package-always-ensure t)
 (setq package-archives '(("melpa"  . "https://melpa.org/packages/")

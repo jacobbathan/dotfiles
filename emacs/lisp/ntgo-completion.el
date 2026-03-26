@@ -4,6 +4,7 @@
 
 (use-package vertico
   :ensure t
+  :demand t
   :init
   (vertico-mode))
 
@@ -19,6 +20,7 @@
 
 (use-package orderless
   :ensure t
+  :demand t
   :custom
   (completion-styles '(orderless basic))
   (completion-category-overrides '((file (styles basic partial-completion)))))
