@@ -37,7 +37,7 @@
 
 (use-package eldoc
   :ensure nil
-n  :init
+  :init
   (global-eldoc-mode))
 
 ;;; Formatters
