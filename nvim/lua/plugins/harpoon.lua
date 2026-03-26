@@ -36,47 +36,49 @@ return {
 					end
 				end
 
-				pickers.new({}, {
-					prompt_title = "Harpoon",
-					finder = finders.new_table({
-						results = items,
-						entry_maker = function(entry)
-							return {
-								value = entry,
-								display = string.format("%d %s", entry.index, entry.value),
-								ordinal = entry.value,
-							}
+				pickers
+					.new({}, {
+						prompt_title = "Harpoon",
+						finder = finders.new_table({
+							results = items,
+							entry_maker = function(entry)
+								return {
+									value = entry,
+									display = string.format("%d %s", entry.index, entry.value),
+									ordinal = entry.value,
+								}
+							end,
+						}),
+						previewer = conf.file_previewer({}),
+						sorter = conf.generic_sorter({}),
+						attach_mappings = function(prompt_bufnr)
+							actions.select_default:replace(function()
+								local selection = action_state.get_selected_entry()
+								actions.close(prompt_bufnr)
+								if selection and selection.value then
+									harpoon:list():select(selection.value.index)
+								end
+							end)
+							return true
 						end,
-					}),
-					previewer = conf.file_previewer({}),
-					sorter = conf.generic_sorter({}),
-					attach_mappings = function(prompt_bufnr)
-						actions.select_default:replace(function()
-							local selection = action_state.get_selected_entry()
-							actions.close(prompt_bufnr)
-							if selection and selection.value then
-								harpoon:list():select(selection.value.index)
-							end
-						end)
-						return true
-					end,
-				}):find()
+					})
+					:find()
 			end
 
 			map.set("n", "<leader>a", function()
 				harpoon:list():add()
 			end, { desc = "Harpoon Add File" })
 			map.set("n", "<C-e>", toggle_menu, { desc = "Harpoon Menu" })
-			map.set("n", "<C-h>", function()
+			map.set("n", "<leader>1", function()
 				harpoon:list():select(1)
 			end, { desc = "Harpoon File 1" })
-			map.set("n", "<C-t>", function()
+			map.set("n", "<leader>2", function()
 				harpoon:list():select(2)
 			end, { desc = "Harpoon File 2" })
-			map.set("n", "<C-n>", function()
+			map.set("n", "<leader>3", function()
 				harpoon:list():select(3)
 			end, { desc = "Harpoon File 3" })
-			map.set("n", "<C-s>", function()
+			map.set("n", "<leader>4", function()
 				harpoon:list():select(4)
 			end, { desc = "Harpoon File 4" })
 		end,

@@ -39,16 +39,10 @@ vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper win
 --  See `:help vim.highlight.on_yank()`
 vim.api.nvim_create_autocmd("TextYankPost", {
 	desc = "Highlight when yanking (copying) text",
-	group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
+	group = vim.api.nvim_create_augroup("ntgo-highlight-yank", { clear = true }),
 	callback = function()
 		vim.highlight.on_yank()
 	end,
 })
 
--- Other Keycommands
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
-
--- Maybe some new tab things??
-vim.keymap.set("n", "<leader>bn", ":bn<cr>") -- next buffer
-vim.keymap.set("n", "<leader>tc", ":tabnew<cr>") -- new tab
 -- vim: ts=2 sts=2 sw=2 et

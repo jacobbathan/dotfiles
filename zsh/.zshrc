@@ -1,10 +1,7 @@
 source "$XDG_CONFIG_HOME/zsh/aliases"
 
-zmodload zsh/complist
-bindkey -M menuselect 'h' vi-backward-char
-bindkey -M menuselect 'k' vi-up-line-or-history
-bindkey -M menuselect 'l' vi-forward-char
-bindkey -M menuselect 'j' vi-down-line-or-history
+# NOTE: zmodload and menuselect bindings live in external/completion.zsh.
+# They are NOT duplicated here — completion.zsh is sourced below and owns them.
 
 autoload -U compinit; compinit
 
@@ -18,9 +15,6 @@ autoload -Uz prompt_purification_setup; prompt_purification_setup
 setopt AUTO_PUSHD
 setopt PUSHD_IGNORE_DUPS
 setopt PUSHD_SILENT
-
-bindkey -v
-export KEYTIMEOUT=1
 
 bindkey -v
 export KEYTIMEOUT=1
@@ -39,7 +33,6 @@ bindkey -M vicmd v edit-command-line
 [ -n "$EAT_SHELL_INTEGRATION_DIR" ] && \
   source "$EAT_SHELL_INTEGRATION_DIR/zsh"
 
-
 if [ $(command -v "fzf") ]; then
 	source /usr/share/fzf/completion.zsh
 	source /usr/share/fzf/key-bindings.zsh
@@ -51,9 +44,9 @@ PROMPT='%n@%~$ '
 export GOROOT=
 export GOPATH=~/go
 export PATH=$PATH:$GOPATH/bin
-# Sourcing in langauges
-source "$HOME/.cargo/env"
 
+# Cargo — explicit path, not relative to XDG_DATA_HOME
+source "$HOME/.cargo/env"
 
 source ~/.config/zsh/scripts.sh
 source ~/.config/zsh/external/bd.zsh
@@ -63,26 +56,48 @@ export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init - zsh)"
 
-
 export NVM_DIR="$HOME/.config/nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-export PATH="$HOME/.local/bin:$PATH"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
-. "$HOME/.config/local/share/../bin/env"
+export PATH="$HOME/.local/bin:$PATH"
 
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
-
 # bun completions
 [ -s "/home/antigo/.bun/_bun" ] && source "/home/antigo/.bun/_bun"
 
-
 # BEGIN opam configuration
-# This is useful if you're using opam as it adds:
-#   - the correct directories to the PATH
-#   - auto-completion for the opam binary
-# This section can be safely removed at any time if needed.
 [[ ! -r '/home/antigo/.opam/opam-init/init.zsh' ]] || source '/home/antigo/.opam/opam-init/init.zsh' > /dev/null 2> /dev/null
 # END opam configuration
+
+# =============================================================================
+# Neovim + tmux
+# =============================================================================
+
+# EDITOR / VISUAL — context-sensitive.
+# Inside a Neovim terminal buffer ($NVIM is set by nvim for all children),
+# use nvr to open files in the existing instance instead of nesting.
+# Install: pip install neovim-remote  (lands in ~/.local/bin, already in PATH)
+
+if [ -n "$NVIM" ]; then
+    export VISUAL="nvr -cc split --remote-wait"
+    export EDITOR="nvr -cc split --remote-wait"
+    alias nvim="nvr -cc split --remote-wait"
+else
+    export VISUAL="nvim"
+    export EDITOR="nvim"
+fi
+
+# Prompt indicator when inside a Neovim terminal buffer
+if [ -n "$NVIM" ]; then
+    PROMPT="%F{yellow}[nvim]%f $PROMPT"
+fi
+
+# Auto-attach to tmux on new terminal.
+# Creates a session named 'main' if none exists.
+# Guards: interactive only, not already in tmux, not inside nvim terminal.
+if command -v tmux &>/dev/null && [ -z "$TMUX" ] && [ -z "$NVIM" ]; then
+    tmux attach-session -t main 2>/dev/null || tmux new-session -s main
+fi

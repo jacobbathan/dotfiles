@@ -1,16 +1,19 @@
 # Dotfiles
 export XDG_CONFIG_HOME="$HOME/.config"
 
-# Specific Data
-export XDG_DATA_HOME="$XDG_CONFIG_HOME/local/share"
+# XDG spec: data files go in ~/.local/share
+export XDG_DATA_HOME="$HOME/.local/share"
 
 # Cached files
 export XDG_CACHE_HOME="$XDG_CONFIG_HOME/cache"
 
-export EDITOR="nvim"
-export VISUAL="nvim"
+# NOTE: EDITOR and VISUAL are intentionally NOT set here.
+# They are set in .zshrc with context-sensitivity:
+#   - inside a Neovim terminal buffer: nvr (neovim-remote)
+#   - everywhere else: nvim
+# Setting them here would override that logic in subshells.
 
-export FZF_DEFAULT_COMMAND="rg --files --hiden --glob '!.git'"
+export FZF_DEFAULT_COMMAND="rg --files --hidden --glob '!.git'"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"

@@ -1,4 +1,3 @@
-
 set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -19,8 +18,8 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 # get color from xressource configuration - variable_name xressource_color fallback
 
 # special
-set_from_resource $foreground foreground #ebdbb2
-set_from_resource $background background #282828
+set_from_resource $foreground  foreground  #ebdbb2
+set_from_resource $background  background  #282828
 set_from_resource $cursorColor cursorColor #ebdbb2
 
 # black
@@ -32,27 +31,27 @@ set_from_resource $red1 color1 #cc241d
 set_from_resource $red2 color9 #fb4934
 
 # green
-set_from_resource $green1 color2 #98971a
+set_from_resource $green1 color2  #98971a
 set_from_resource $green2 color10 #b8bb26
 
 # yellow
-set_from_resource $yellow1 color3 #d79921
+set_from_resource $yellow1 color3  #d79921
 set_from_resource $yellow2 color11 #fabd2f
 
 # blue
-set_from_resource $blue1 color4 #458588
+set_from_resource $blue1 color4  #458588
 set_from_resource $blue2 color12 #83a598
 
-# magenta
-set_from_resource $cyan1 color5 #b16286
-set_from_resource $cyan2 color13 #d3869b
+# magenta (was incorrectly named $cyan1/$cyan2 — now fixed)
+set_from_resource $magenta1 color5  #b16286
+set_from_resource $magenta2 color13 #d3869b
 
 # cyan
-set_from_resource $cyan1 color6 #689d6a
+set_from_resource $cyan1 color6  #689d6a
 set_from_resource $cyan2 color14 #8ec07c
 
 # white
-set_from_resource $white1 color7 #a89984
+set_from_resource $white1 color7  #a89984
 set_from_resource $white2 color15 #ebdbb2
 
 
@@ -72,7 +71,7 @@ bindsym $mod+Shift+q kill
 # start dmenu (a program launcher)
 bindsym $mod+d exec --no-startup-id dmenu_run
 
-bindsym $mod+Shift+m exec --no-startup-id emacsclient -a "" -c 
+bindsym $mod+Shift+m exec --no-startup-id emacsclient -a "" -c
 
 # change focus
 bindsym $mod+h focus left
@@ -81,9 +80,9 @@ bindsym $mod+k focus up
 bindsym $mod+l focus right
 
 # alternatively, you can use the cursor keys:
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
+bindsym $mod+Left  focus left
+bindsym $mod+Down  focus down
+bindsym $mod+Up    focus up
 bindsym $mod+Right focus right
 
 # move focused window
@@ -93,9 +92,9 @@ bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 
 # alternatively, you can use the cursor keys:
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Left  move left
+bindsym $mod+Shift+Down  move down
+bindsym $mod+Shift+Up    move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
@@ -122,16 +121,15 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 
 # Define names for default workspaces for which we configure key bindings later on.
-# We use variables to avoid repeating the names in multiple places.
-set $ws1 "1"
-set $ws2 "2"
-set $ws3 "3"
-set $ws4 "4"
-set $ws5 "5"
-set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8"
-set $ws9 "9"
+set $ws1  "1"
+set $ws2  "2"
+set $ws3  "3"
+set $ws4  "4"
+set $ws5  "5"
+set $ws6  "6"
+set $ws7  "7"
+set $ws8  "8"
+set $ws9  "9"
 set $ws10 "10"
 
 # switch to workspace
@@ -159,29 +157,26 @@ bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
 
-
 set $i3lockwall sh ~/.config/i3/scripts/lock.sh
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
 
-set $mode_system \
-System (l) lock, (e) logout, (s) suspend, \
-(h) hibernate, (r) reboot, (Ctrl+s) shutdown,
+# System mode — fixed: each action has a unique key, no duplicate bindings
+set $mode_system System: (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Ctrl+s) shutdown
 
 mode "$mode_system" {
-   bindsym l exec --no-startup-id $i3lockwall, mode "default"
-   bindsym e exec --no-startup-id i3-msg ext, mode "default"
-   bindsym s exec --no-startup-id $i3lockwall && systemctl suspend, \ mode "default"
-   bindsym h exec --no-startup-id $i3lockwall && systemctl hibernate, \ mode "default"
-   bindsym e exec --no-startup-id systemctl reboot, mode "default"
-   bindsym e exec --no-startup-id systemctl poweroff -i, \ mode "default"
+    bindsym l exec --no-startup-id $i3lockwall, mode "default"
+    bindsym e exec --no-startup-id i3-msg exit, mode "default"
+    bindsym s exec --no-startup-id $i3lockwall && systemctl suspend, mode "default"
+    bindsym h exec --no-startup-id $i3lockwall && systemctl hibernate, mode "default"
+    bindsym r exec --no-startup-id systemctl reboot, mode "default"
+    bindsym ctrl+s exec --no-startup-id systemctl poweroff -i, mode "default"
 
-   bindsym Return mode "default"
-   bindsym Escape mode "default"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
 }
 
 bindsym $mod+BackSpace mode "$mode_system"
@@ -192,26 +187,19 @@ gaps inner 5px
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym h resize shrink width 10 px or 10 ppt
-        bindsym j resize grow height 10 px or 10 ppt
-        bindsym k resize shrink height 10 px or 10 ppt
-        bindsym l resize grow width 10 px or 10 ppt
+    bindsym h resize shrink width  10 px or 10 ppt
+    bindsym j resize grow   height 10 px or 10 ppt
+    bindsym k resize shrink height 10 px or 10 ppt
+    bindsym l resize grow   width  10 px or 10 ppt
 
-        # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
+    bindsym Left  resize shrink width  10 px or 10 ppt
+    bindsym Down  resize grow   height 10 px or 10 ppt
+    bindsym Up    resize shrink height 10 px or 10 ppt
+    bindsym Right resize grow   width  10 px or 10 ppt
 
-        # back to normal: Enter or Escape or $mod+r
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-        bindsym $mod+r mode "default"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+r mode "default"
 }
 
 bindsym $mod+r mode "resize"
@@ -219,51 +207,42 @@ bindsym $mod+r mode "resize"
 workspace_auto_back_and_forth yes
 focus_follows_mouse no
 
-for_window [window_role="pop-up"] floating enable
+for_window [window_role="pop-up"]     floating enable
 for_window [window_role="task_dialog"] floating enable
-
-for_window [class="Arandr"] floating enable
-
+for_window [class="Arandr"]           floating enable
 
 bindsym XF86MonBrightnessDown exec brightnessctl s 5%-
-bindsym XF86MonBrightnessUp exec brightnessctl s +5%
+bindsym XF86MonBrightnessUp   exec brightnessctl s +5%
 
 exec --no-startup-id dunst
-bindsym $mod+x exec dunstctl close-all
+bindsym $mod+x       exec dunstctl close-all
 bindsym Ctrl+BackSpace exec dunstctl history-pop
-
-
 
 # hide borders
 hide_edge_borders both
 
-# class                 border  backgr. text    indicator child_border
-client.focused          $background $black1 $white2 $background
-client.focused_inactive $background $black1 $black2 $background
-client.unfocused        $background $background $black2 $background
-client.urgent           $red1 $red1 $white2 $red1 $red1
-client.placeholder      $red1 $red1 $white2 $red1 $red1
+# class                 border       backgr.   text     indicator    child_border
+client.focused          $background  $black1   $white2  $background
+client.focused_inactive $background  $black1   $black2  $background
+client.unfocused        $background  $background $black2 $background
+client.urgent           $red1        $red1     $white2  $red1        $red1
+client.placeholder      $red1        $red1     $white2  $red1        $red1
 
-
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
 bar {
     position top
     status_command i3status --config ~/.config/i3/i3status.conf
-    # Disable all tray icons
     tray_output none
-    # tray_output primary
     separator_symbol "┃"
     colors {
         background $black1
         statusline $white2
-        separator $black2
+        separator  $black2
 
-        #                  border background text
-        focused_workspace  $yellow1 $blue1 $white1
-        active_workspace   $yellow2 $blue1 $white2
-        inactive_workspace $black1 $foreground $white1
-        urgent_workspace   $red1 $red1 $white2
-        binding_mode       $background $red2 $white2
+        #                  border    background  text
+        focused_workspace  $yellow1  $blue1      $white1
+        active_workspace   $yellow2  $blue1      $white2
+        inactive_workspace $black1   $foreground $white1
+        urgent_workspace   $red1     $red1       $white2
+        binding_mode       $background $red2     $white2
     }
 }
