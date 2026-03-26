@@ -16,6 +16,13 @@ return {
 
 		-- Required dependency for nvim-dap-ui
 		"nvim-neotest/nvim-nio",
+		{
+			"theHamsta/nvim-dap-virtual-text",
+			opts = {
+				commented = false,
+				virt_text_pos = vim.fn.has("nvim-0.10") == 1 and "inline" or "eol",
+			},
+		},
 
 		-- Installs the debug adapters for you
 		"williamboman/mason.nvim",
@@ -34,6 +41,13 @@ return {
 			{ "<F2>", dap.step_over, desc = "Debug: Step Over" },
 			{ "<F3>", dap.step_out, desc = "Debug: Step Out" },
 			{ "<leader>b", dap.toggle_breakpoint, desc = "Debug: Toggle Breakpoint" },
+			{ "<leader>db", dap.toggle_breakpoint, desc = "Debug: Toggle Breakpoint" },
+			{ "<leader>dc", dap.continue, desc = "Debug: Continue" },
+			{ "<leader>di", dap.step_into, desc = "Debug: Step Into" },
+			{ "<leader>do", dap.step_over, desc = "Debug: Step Over" },
+			{ "<leader>dO", dap.step_out, desc = "Debug: Step Out" },
+			{ "<leader>du", dapui.toggle, desc = "Debug: Toggle UI" },
+			{ "<leader>dr", dap.repl.open, desc = "Debug: Open REPL" },
 			{
 				"<leader>B",
 				function()

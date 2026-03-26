@@ -36,10 +36,16 @@ require("lazy").setup({
 	require("plugins.todo-comments"),
 	require("plugins.mini"),
 	require("plugins.treesitter"),
+	require("plugins.treesitter_context"),
 	require("plugins.debug"),
 	require("plugins.indent_line"),
 	require("plugins.lint"),
-	require("plugins.autopairs"),
+	require("plugins.flash"),
+	require("plugins.harpoon"),
+	require("plugins.fugitive"),
+	require("plugins.persistence"),
+	require("plugins.iron"),
+	require("plugins.quarto"),
 
 	-- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
 	--    This is the easiest way to modularize your config.

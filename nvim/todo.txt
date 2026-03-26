@@ -1,8 +1,0 @@
-To add:
-https://github.com/nvim-treesitter/nvim-treesitter-textobjects
-https://github.com/mfussenegger/nvim-lint
-https://github.com/kylechui/nvim-surround
-https://github.com/akinsho/bufferline.nvim
-https://github.com/nvim-lualine/lualine.nvim
-https://github.com/nvim-mini/mini.pairs
-https://github.com/folke/trouble.nvim

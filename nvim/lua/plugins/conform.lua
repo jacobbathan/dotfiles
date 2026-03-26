@@ -30,6 +30,10 @@ return {
 			end,
 			formatters_by_ft = {
 				lua = { "stylua" },
+				python = { "ruff_format" },
+				go = { "goimports", "gofmt" },
+				rust = { "rustfmt" },
+				ocaml = { "ocamlformat" },
 			},
 		},
 	},
