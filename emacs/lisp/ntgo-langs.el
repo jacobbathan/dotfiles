@@ -40,11 +40,6 @@
   :init
   (global-eldoc-mode))
 
-(use-package treesit-auto
-  :ensure t
-  :config
-  (global-treesit-auto-mode))
-
 ;;; Formatters
 
 (use-package reformatter
@@ -79,7 +74,7 @@
 
 (use-package lsp-haskell
   :ensure t
-  :after lsp-mode
+  :hook (haskell-mode . lsp-deferred)
   :config
   (setq lsp-haskell-formatting-provider "none"))
 
@@ -184,26 +179,27 @@
   :mode (("\\.ts\\'" . typescript-ts-mode)
 	 ("\\.tsx\\'" . tsx-ts-mode)
 	 ("\\.js\\'" . js-ts-mode)
-	 ("\\.jsx\\'" . jsx-ts-mode))
+	 ("\\.jsx\\'" . js-ts-mode))
+  :config
+    (require 'dap-node)
   :hook
   ((typescript-ts-mode . lsp-deferred)
    (tsx-ts-mode . lsp-deferred)
    (js-ts-mode . lsp-deferred))
-  :config
-  (require 'dap-node))
+)
 
 (reformatter-define prettier-format
   :program "prettier"
-  :args `("--stdin-filepath", buffer-file-name))
+  :args `("--stdin-filepath" ,buffer-file-name))
 
 ;; --- C# ---
 (use-package csharp-ts-mode
   :ensure nil
   :mode "\\.cs\\'"
-  :hook
-  ((csharp-ts-mode . lsp-deferred))
   :config
-  (require 'dap-netcore))
+  (require 'dap-netcore)
+  :hook
+  ((csharp-ts-mode . lsp-deferred)))
 
 
 (provide 'ntgo-langs)

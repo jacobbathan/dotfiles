@@ -80,7 +80,8 @@
   :config
   (setq project-vc-extra-root-markers
         '("Cargo.toml" "go.mod" "pyproject.toml"
-          "package.json" ".project" "dune-project")))
+          "package.json" ".project" "dune-project"
+	  "compile_commands.json" "CMakeLists.txt")))
 
 (use-package consult-project-extra
   :ensure t)

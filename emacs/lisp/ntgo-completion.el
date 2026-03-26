@@ -28,7 +28,7 @@
 (use-package consult
   :ensure t
   :custom
-  (consult-preview-key nil)
+  (consult-preview-key "M-.")
   :bind
   (("C-x b" . consult-buffer)
    ("M-l"   . consult-git-grep)
@@ -68,7 +68,10 @@
     (add-to-list 'savehist-additional-variables 'corfu-history)))
 
 (use-package corfu-terminal
-  :ensure t)
+  :ensure t
+  :unless (display-graphic-p)
+  :config
+  (corfu-terminal-mode +1))
 
 (use-package cape
   :ensure t
@@ -80,3 +83,4 @@
 
 (provide 'ntgo-completion)
 ;;; ntgo-completion.el ends here
+
