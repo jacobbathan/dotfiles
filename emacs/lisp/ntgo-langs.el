@@ -1,16 +1,5 @@
 ;;; ntgo-langs.el --- LSP and language support -*- lexical-binding: t -*-
 
-;;; Package updates
-
-(use-package auto-package-update
-  :ensure t
-  :custom
-  (auto-package-update-interval 7)
-  (auto-package-update-prompt-before-update t)
-  (auto-package-update-hide-results t)
-  :config
-  (auto-package-update-maybe))
-
 ;;; LSP
 
 (use-package lsp-mode
@@ -19,8 +8,7 @@
   (setq lsp-keymap-prefix "C-c l")
   (setq lsp-completion-provider :none)   ; hand completion to corfu
   :hook
-  ((prog-mode . lsp-deferred)
-   (lsp-mode  . lsp-enable-which-key-integration))
+  ((lsp-mode  . lsp-enable-which-key-integration))
   :bind (:map lsp-mode-map
               ("C-c c a" . lsp-execute-code-action)
               ("C-c c o" . lsp-organize-imports)
@@ -33,7 +21,6 @@
   :hook (lsp-mode . lsp-ui-mode)
   :custom
   (lsp-ui-doc-enable t)
-  (lsp-ui-doc-show-with-cursor t)
   (lsp-ui-sideline-enable t)
   (lsp-ui-sideline-show-diagnostics t)
   (lsp-ui-sideline-show-hover nil)
@@ -43,7 +30,7 @@
   :ensure t
   :after lsp-mode
   :config
-  (dap-auto-configure-mode)
+  (dap-ui-mode 1)
   ;; codelldb: single download covers C, C++, and Rust
   (require 'dap-codelldb)
   (dap-codelldb-setup))
@@ -151,7 +138,11 @@
          ("\\.hpp\\'" . c++-ts-mode))
   :config
   ;; codelldb handles C/C++ debugging; setup is done in dap-mode block
-  (require 'dap-codelldb))
+  (require 'dap-codelldb)
+  :hook ((c-ts-mode . lsp-deferred)
+	 (c++-ts-mode . lsp-deferred)))
+(use-package cmake-mode
+  :ensure t)
 
 ;; --- Python (basedpyright + debugpy) ---
 
@@ -165,6 +156,10 @@
   :after dap-mode
   :config
   (setq dap-python-debugger 'debugpy))
+
+(use-package pyvenv
+  :ensure t
+  :hook (python-ts-mode . pyvenv-mode))
 
 ;; --- Perl ---
 
@@ -182,6 +177,34 @@
   :hook (tuareg-mode . lsp-deferred)
   :config
   (require 'dap-ocaml))
+
+;; --- Typescript/Javascript ---
+(use-package typescript-ts-mode
+  :ensure nil
+  :mode (("\\.ts\\'" . typescript-ts-mode)
+	 ("\\.tsx\\'" . tsx-ts-mode)
+	 ("\\.js\\'" . js-ts-mode)
+	 ("\\.jsx\\'" . jsx-ts-mode))
+  :hook
+  ((typescript-ts-mode . lsp-deferred)
+   (tsx-ts-mode . lsp-deferred)
+   (js-ts-mode . lsp-deferred))
+  :config
+  (require 'dap-node))
+
+(reformatter-define prettier-format
+  :program "prettier"
+  :args `("--stdin-filepath", buffer-file-name))
+
+;; --- C# ---
+(use-package csharp-ts-mode
+  :ensure nil
+  :mode "\\.cs\\'"
+  :hook
+  ((csharp-ts-mode . lsp-deferred))
+  :config
+  (require 'dap-netcore))
+
 
 (provide 'ntgo-langs)
 ;;; ntgo-langs.el ends here

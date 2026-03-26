@@ -14,7 +14,7 @@
   :ensure t
   :custom
   ;; Global settings (defaults)
-n  (doom-themes-enable-bold t)   ; if nil, bold is universally disabled
+  (doom-themes-enable-bold t)   ; if nil, bold is universally disabled
   (doom-themes-enable-italic t) ; if nil, italics is universally disabled
   ;; for treemacs users
   (doom-themes-treemacs-theme "doom-gruvbox") ; use "doom-colors" for less minimal icon theme

@@ -60,6 +60,16 @@
   :ensure t
   :bind ("C-x g" . magit-status))
 
+(use-package diff-hl
+  :ensure t
+  :hook
+  ((prog-mode . diff-hl-mode)
+   (dired-mode . diff-hl-dired-mode)
+   (magit-pre-refresh . diff-hl-magit-pre-refresh)
+   (magit-post-refresh . diff-hl-magit-post-refresh))
+  :config
+  (setq diff-hl-fringe-bmp-function 'diff-hl-fringe-bmp-from-type))
+
 ;;; Project
 
 ;; ASSUMPTION: Emacs 29.1+ is in use; `project-vc-extra-root-markers' was

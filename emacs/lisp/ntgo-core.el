@@ -14,8 +14,8 @@
 
 ;;; Line numbers
 
-(global-display-line-numbers-mode)
-(setq display-line-numbers 'relative)
+(setq-default display-line-numbers 'relative)
+(global-display-line-numbers-mode 1)
 
 ;;; Window management
 
@@ -32,6 +32,7 @@
 
 (add-hook 'prog-mode-hook #'subword-mode)
 (add-hook 'prog-mode-hook #'flymake-mode)
+(setq flymake-fringe-indicator-position 'right-fringe)
 
 ;;; Built-in packages
 
