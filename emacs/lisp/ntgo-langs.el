@@ -37,7 +37,7 @@
 
 (use-package eldoc
   :ensure nil
-  :init
+n  :init
   (global-eldoc-mode))
 
 ;;; Formatters
@@ -131,11 +131,12 @@
          ("\\.h\\'"   . c-ts-mode)
          ("\\.cpp\\'" . c++-ts-mode)
          ("\\.hpp\\'" . c++-ts-mode))
+  :hook ((c-ts-mode . lsp-deferred)
+	 (c++-ts-mode . lsp-deferred))
   :config
   ;; codelldb handles C/C++ debugging; setup is done in dap-mode block
-  (require 'dap-codelldb)
-  :hook ((c-ts-mode . lsp-deferred)
-	 (c++-ts-mode . lsp-deferred)))
+  (require 'dap-codelldb))
+
 (use-package cmake-mode
   :ensure t)
 
@@ -180,13 +181,12 @@
 	 ("\\.tsx\\'" . tsx-ts-mode)
 	 ("\\.js\\'" . js-ts-mode)
 	 ("\\.jsx\\'" . js-ts-mode))
-  :config
-    (require 'dap-node)
   :hook
-  ((typescript-ts-mode . lsp-deferred)
+   ((typescript-ts-mode . lsp-deferred)
    (tsx-ts-mode . lsp-deferred)
    (js-ts-mode . lsp-deferred))
-)
+  :config
+    (require 'dap-node))
 
 (reformatter-define prettier-format
   :program "prettier"
